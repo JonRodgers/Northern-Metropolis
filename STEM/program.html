@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Territories STEM - Complete 100-Class Curriculum Program Schedule">
+    <meta name="keywords" content="STEM education, curriculum, classes, schedule, Hong Kong">
+    <title>New Territories STEM Curriculum</title>
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Program-Specific Styles -->
+    <style>
+        .program-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: var(--white);
+            padding: 3rem var(--spacing-md);
+            text-align: center;
+        }
+
+        .program-header h1 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .headline-compact {
+            display: inline;
+        }
+
+        @media (max-width: 768px) {
+            .headline-compact {
+                font-size: 0.9em;
+            }
+        }
+
+        .program-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        @media (max-width: 768px) {
+            .program-header {
+                padding: 2rem var(--spacing-md);
+            }
+
+            .program-header p {
+                font-size: 1rem;
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        .schedule-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .week-view {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .day-column {
+            background-color: #f8f8f8;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .day-header {
+            background-color: #1a1a1a;
+            color: var(--white);
+            padding: var(--spacing-md);
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .time-slot {
+            border-bottom: 1px solid #e0e0e0;
+            padding: var(--spacing-md);
+        }
+
+        .time-slot:last-child {
+            border-bottom: none;
+        }
+
+        .time-label {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .level-beginner {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .level-intermediate {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .level-advanced {
+            background-color: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        .class-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .class-description {
+            color: #666666;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .class-price {
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .learning-outcomes {
+            background-color: #f0f0f0;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .learning-outcomes h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .outcomes-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .outcomes-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #666666;
+        }
+
+        .outcomes-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .pricing-section {
+            background-color: #f8f8f8;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .price-card {
+            background-color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border-left: 4px solid #666666;
+        }
+
+        .price-card h4 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg);
+        }
+
+        @media (min-width: 768px) {
+            .week-view {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .schedule-container {
+                padding: var(--spacing-xl);
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            text-decoration: none;
+            font-size: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+            }
+        }
+
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            font-family: 'Century Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .language-switcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        .language-menu {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 998;
+            min-width: 120px;
+            display: none;
+        }
+
+        .language-menu.show {
+            display: block;
+        }
+
+        .language-option {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: 'Century Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            transition: background-color 0.2s ease;
+        }
+
+        .language-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .language-option:first-child {
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .language-option:last-child {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                bottom: 15px;
+                left: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            .language-menu {
+                bottom: 75px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="NT STEM Logo" class="logo-image" onerror="this.style.display='none'">
+                    <div class="logo-text">NEW TERRITORIES<br>STEM SERIES</div>
+                </a>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="program.html">Programs</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="program.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         PROGRAM HEADER
+         ============================================ -->
+    <section class="program-header">
+        <h1>NEW <span class="headline-compact">TERRITORIES</span> STEM <span class="headline-compact">CURRICULUM</span></h1>
+        <p>A comprehensive after-school STEM program featuring transformative classes across 10 major themes. Classes run 5 days a week with 3 progressive levels daily (4pm-7pm).</p>
+    </section>
+
+    <!-- ============================================
+         WEEKLY SCHEDULE
+         ============================================ -->
+    <section id="schedule" class="section">
+        <div class="schedule-container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Weekly Schedule Overview</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Each week features 15 classes across 5 days. Classes progress from Beginner (4-5pm) → Intermediate (5-6pm) → Advanced (6-7pm)
+            </p>
+
+            <!-- Week 1 Sample -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1.5rem;">Week 1: Transportation & Mobility (Classes 1-15)</h3>
+                <div class="week-view">
+                    <!-- Monday -->
+                    <div class="day-column">
+                        <div class="day-header">Monday</div>
+                        <div class="time-slot">
+                            <div class="time-label">4:00 PM - 5:00 PM</div>
+                            <span class="level-badge level-beginner">Beginner</span>
+                            <div class="class-title">The Telephone to the Smartphone</div>
+                            <div class="class-description">Design a communication device for the future</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">5:00 PM - 6:00 PM</div>
+                            <span class="level-badge level-intermediate">Intermediate</span>
+                            <div class="class-title">Stephenson's Rocket to Tesla's Starship</div>
+                            <div class="class-description">Build a model rocket and study propulsion systems</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">6:00 PM - 7:00 PM</div>
+                            <span class="level-badge level-advanced">Advanced</span>
+                            <div class="class-title">The Wright Brothers' First Flight</div>
+                            <div class="class-description">Design and build a flying machine prototype</div>
+                            <div class="class-price">HK$450</div>
+                        </div>
+                    </div>
+
+                    <!-- Tuesday -->
+                    <div class="day-column">
+                        <div class="day-header">Tuesday</div>
+                        <div class="time-slot">
+                            <div class="time-label">4:00 PM - 5:00 PM</div>
+                            <span class="level-badge level-beginner">Beginner</span>
+                            <div class="class-title">From Horse Carriages to Electric Vehicles</div>
+                            <div class="class-description">Design an eco-friendly vehicle for Hong Kong</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">5:00 PM - 6:00 PM</div>
+                            <span class="level-badge level-intermediate">Intermediate</span>
+                            <div class="class-title">The Bicycle Revolution</div>
+                            <div class="class-description">Engineer a custom bicycle for urban environments</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">6:00 PM - 7:00 PM</div>
+                            <span class="level-badge level-advanced">Advanced</span>
+                            <div class="class-title">Maglev Trains & Hyperloop</div>
+                            <div class="class-description">Design a magnetic levitation transport system</div>
+                            <div class="class-price">HK$450</div>
+                        </div>
+                    </div>
+
+                    <!-- Wednesday -->
+                    <div class="day-column">
+                        <div class="day-header">Wednesday</div>
+                        <div class="time-slot">
+                            <div class="time-label">4:00 PM - 5:00 PM</div>
+                            <span class="level-badge level-beginner">Beginner</span>
+                            <div class="class-title">The Panama Canal to Modern Waterway Engineering</div>
+                            <div class="class-description">Design a water management system for a city</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">5:00 PM - 6:00 PM</div>
+                            <span class="level-badge level-intermediate">Intermediate</span>
+                            <div class="class-title">From Sailing Ships to Container Vessels</div>
+                            <div class="class-description">Design an efficient cargo ship</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">6:00 PM - 7:00 PM</div>
+                            <span class="level-badge level-advanced">Advanced</span>
+                            <div class="class-title">The London Underground to Modern Metro Systems</div>
+                            <div class="class-description">Design a subway system for a new city</div>
+                            <div class="class-price">HK$450</div>
+                        </div>
+                    </div>
+
+                    <!-- Thursday -->
+                    <div class="day-column">
+                        <div class="day-header">Thursday</div>
+                        <div class="time-slot">
+                            <div class="time-label">4:00 PM - 5:00 PM</div>
+                            <span class="level-badge level-beginner">Beginner</span>
+                            <div class="class-title">Tunneling Through Mountains</div>
+                            <div class="class-description">Design a tunnel through challenging terrain</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">5:00 PM - 6:00 PM</div>
+                            <span class="level-badge level-intermediate">Intermediate</span>
+                            <div class="class-title">The Eiffel Tower to Modern Skyscrapers</div>
+                            <div class="class-description">Design a tall building for Hong Kong</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">6:00 PM - 7:00 PM</div>
+                            <span class="level-badge level-advanced">Advanced</span>
+                            <div class="class-title">Roman Arches to Modern Suspension Bridges</div>
+                            <div class="class-description">Build a bridge that spans a challenging gap</div>
+                            <div class="class-price">HK$450</div>
+                        </div>
+                    </div>
+
+                    <!-- Friday -->
+                    <div class="day-column">
+                        <div class="day-header">Friday</div>
+                        <div class="time-slot">
+                            <div class="time-label">4:00 PM - 5:00 PM</div>
+                            <span class="level-badge level-beginner">Beginner</span>
+                            <div class="class-title">The Great Wall of China</div>
+                            <div class="class-description">Design a protective structure for a community</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">5:00 PM - 6:00 PM</div>
+                            <span class="level-badge level-intermediate">Intermediate</span>
+                            <div class="class-title">Domes: From Pantheon to Geodesic Domes</div>
+                            <div class="class-description">Design a dome structure for extreme environments</div>
+                            <div class="class-price">HK$400</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-label">6:00 PM - 7:00 PM</div>
+                            <span class="level-badge level-advanced">Advanced</span>
+                            <div class="class-title">The Crystal Palace to Modern Glass Architecture</div>
+                            <div class="class-description">Design a transparent building with climate control</div>
+                            <div class="class-price">HK$450</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Structure Info -->
+            <div style="background-color: #f0f0f0; padding: var(--spacing-lg); border-radius: var(--radius-md); margin-top: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Program Structure</h3>
+                <p style="color: #666666; margin-bottom: 1rem;">
+                    The 100-class curriculum is organized into 10 thematic sections, each running for 2 weeks (15 classes per week):
+                </p>
+                <ul style="list-style: none; padding: 0; color: #666666;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 1-2:</strong> Transportation & Mobility (Classes 1-15)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 3-4:</strong> Architecture & Structures (Classes 16-30)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 5-6:</strong> Energy & Power (Classes 31-45)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 7-8:</strong> Water & Sanitation (Classes 46-60)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 9-10:</strong> Materials & Manufacturing (Classes 61-75)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 11-12:</strong> Communication & Information (Classes 76-90)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 13-14:</strong> Medicine & Health (Classes 91-100)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 15-16:</strong> Environmental & Sustainability (Classes 101-115)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 17-18:</strong> Space & Exploration (Classes 116-130)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.8rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: #2e7d32; font-weight: 700;">✓</span>
+                        <strong>Week 19-20:</strong> Future Technologies & Innovation (Classes 131-145)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         LEARNING OUTCOMES
+         ============================================ -->
+    <section id="learning-outcomes" class="section section-alt">
+        <div class="container">
+            <h2>Learning Outcomes</h2>
+            <div class="learning-outcomes">
+                <h3>By completing this 100-class curriculum, students will:</h3>
+                <ul class="outcomes-list">
+                    <li>Understand the historical evolution of major technologies and innovations</li>
+                    <li>Develop hands-on engineering and design skills across multiple disciplines</li>
+                    <li>Learn to think critically about real-world problems and solutions</li>
+                    <li>Gain exposure to careers in STEM fields and innovation</li>
+                    <li>Build confidence in tackling complex, interdisciplinary challenges</li>
+                    <li>Develop creativity and imagination through project-based learning</li>
+                    <li>Understand the intersection of science, technology, engineering, art, and mathematics</li>
+                    <li>Learn from pioneers and innovators who shaped our world</li>
+                    <li>Apply knowledge to design solutions for real-world problems</li>
+                    <li>Develop teamwork and communication skills through collaborative projects</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PRICING
+         ============================================ -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2>Pricing & Enrollment</h2>
+            <div class="pricing-section">
+                <h3 style="color: #1a1a1a;">Class Pricing</h3>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h4>Beginner Classes</h4>
+                        <p style="color: #666666; margin-bottom: 0.5rem;">4:00 PM - 5:00 PM</p>
+                        <div class="price-amount">HK$400</div>
+                        <p style="color: #666666; font-size: 0.9rem; margin-top: 0.5rem;">Per 1-hour class</p>
+                    </div>
+                    <div class="price-card">
+                        <h4>Intermediate Classes</h4>
+                        <p style="color: #666666; margin-bottom: 0.5rem;">5:00 PM - 6:00 PM</p>
+                        <div class="price-amount">HK$400</div>
+                        <p style="color: #666666; font-size: 0.9rem; margin-top: 0.5rem;">Per 1-hour class</p>
+                    </div>
+                    <div class="price-card">
+                        <h4>Advanced Classes</h4>
+                        <p style="color: #666666; margin-bottom: 0.5rem;">6:00 PM - 7:00 PM</p>
+                        <div class="price-amount">HK$450</div>
+                        <p style="color: #666666; font-size: 0.9rem; margin-top: 0.5rem;">Per 1-hour class</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+                    <h4 style="color: #1a1a1a; margin-bottom: 1rem;">Package Discounts</h4>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <h4>5-Class Package</h4>
+                            <p style="color: #666666; margin-bottom: 0.5rem;">Save 5%</p>
+                            <div class="price-amount">HK$1,900</div>
+                        </div>
+                        <div class="price-card">
+                            <h4>10-Class Package</h4>
+                            <p style="color: #666666; margin-bottom: 0.5rem;">Save 10%</p>
+                            <div class="price-amount">HK$3,600</div>
+                        </div>
+                        <div class="price-card">
+                            <h4>Full 20-Week Program</h4>
+                            <p style="color: #666666; margin-bottom: 0.5rem;">Save 15%</p>
+                            <div class="price-amount">HK$6,375</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; color: var(--white);">
+                Join hundreds of students discovering the joy of creative STEM learning
+            </p>
+            
+            <div class="button-group">
+                <a href="https://www.atmospheres.hk/booking-1" class="cta-button cta-button-magenta">BOOK YOUR STEM CLASS</a>
+                <a href="program.html" class="cta-button cta-button-learn-more">LEARN MORE ABOUT OUR STEM PROGRAM</a>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="mailto:jon.rodgers@atmospheres.hk" class="contact-button contact-button-email">EMAIL US</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://wa.me/85267799324" class="contact-button contact-button-whatsapp">WHATSAPP US</a>
+                </div>
+                <div class="contact-item">
+                    <a href="locations.html" class="contact-button contact-button-locations">OUR LOCATIONS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 New Territories STEM. All rights reserved.</p>
+            <p>Inspiring the next generation of innovators, engineers, and creative thinkers.</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Language Switcher Menu -->
+    <div class="language-menu" id="languageMenu">
+        <button class="language-option" onclick="changeLanguage('en')">English</button>
+        <button class="language-option" onclick="changeLanguage('zh-CN')">中文 (简体)</button>
+        <button class="language-option" onclick="changeLanguage('zh-TW')">繁體中文</button>
+    </div>
+
+    <!-- Language Switcher Button -->
+    <button class="language-switcher" id="languageSwitcher" onclick="toggleLanguageMenu()" title="Change Language">
+        🌐
+    </button>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/85267799324" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        💬
+    </a>
+
+    <!-- Language Switcher Script -->
+    <script>
+        var currentLanguage = 'en';
+        var translations = {};
+        var originalContent = {};
+        var elementMap = {};
+
+        // Load translations from JSON file
+        function loadTranslations() {
+            fetch('translations.json')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    translations = data;
+                    mapPageElements();
+                })
+                .catch(function(error) {
+                    console.log('Error loading translations:', error);
+                });
+        }
+
+        // Smart mapping of page elements to translation keys
+        function mapPageElements() {
+            var textMap = {
+                'Home': 'home',
+                'Programs': 'programs',
+                'Locations': 'locations',
+                'Contact': 'contact',
+                'NEW TERRITORIES STEM CURRICULUM': 'curriculum',
+                'A comprehensive after-school STEM program featuring transformative classes across 10 major themes. Classes run 5 days a week with 3 progressive levels daily (4pm-7pm).': 'curriculumDesc',
+                'Weekly Schedule Overview': 'weeklyScheduleOverview',
+                'Each week features 15 classes across 5 days. Classes progress from Beginner (4-5pm) → Intermediate (5-6pm) → Advanced (6-7pm)': 'eachWeekFeatures',
+                'Week 1: Transportation & Mobility (Classes 1-15)': 'week1',
+                'Monday': 'monday',
+                'Tuesday': 'tuesday',
+                'Wednesday': 'wednesday',
+                'Thursday': 'thursday',
+                'Friday': 'friday',
+                'Beginner': 'beginner',
+                'Intermediate': 'intermediateLevel',
+                'Advanced': 'advancedLevel',
+                'Program Structure': 'programStructure',
+                'The 100-class curriculum is organized into 10 thematic sections, each running for 2 weeks (15 classes per week):': 'hundredClassCurriculum',
+                'Learning Outcomes': 'learningOutcomes',
+                'By completing this 100-class curriculum, students will:': 'byCompletingCurriculum',
+                'Pricing & Enrollment': 'pricing',
+                'Class Pricing': 'classPricing',
+                'Beginner Classes': 'beginnerClasses',
+                '4:00 PM - 5:00 PM': 'beginnerTime',
+                'Per 1-hour class': 'perClass',
+                'Intermediate Classes': 'intermediateClasses',
+                '5:00 PM - 6:00 PM': 'intermediateTime',
+                'Advanced Classes': 'advancedClasses',
+                '6:00 PM - 7:00 PM': 'advancedTime',
+                'Package Discounts': 'packageDiscounts',
+                '5-Class Package': 'fiveClassPackage',
+                'Save 5%': 'save5',
+                'HK$1,900': 'hk1900',
+                '10-Class Package': 'tenClassPackage',
+                'Save 10%': 'save10',
+                'HK$3,600': 'hk3600',
+                'Full 20-Week Program': 'fullProgram',
+                'Save 15%': 'save15',
+                'HK$6,375': 'hk6375',
+                'Ready to Get Started?': 'readyStart',
+                'Join hundreds of students discovering the joy of creative STEM learning': 'joinHundreds',
+                'BOOK YOUR STEM CLASS': 'bookClass',
+                'LEARN MORE ABOUT OUR STEM PROGRAM': 'learnMore',
+                'EMAIL US': 'emailUs',
+                'WHATSAPP US': 'whatsappUs',
+                '© 2026 New Territories STEM. All rights reserved.': 'copyright',
+                'Inspiring the next generation of innovators, engineers, and creative thinkers.': 'inspiringFooter'
+            };
+
+            // Find and store all text nodes
+            var walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            var node;
+            while (node = walker.nextNode()) {
+                var text = node.textContent.trim();
+                if (text && textMap[text]) {
+                    originalContent[textMap[text]] = text;
+                    elementMap[textMap[text]] = node;
+                }
+            }
+        }
+
+        function changeLanguage(lang) {
+            toggleLanguageMenu();
+            
+            if (!translations[lang]) {
+                console.log('Language not available:', lang);
+                return;
+            }
+
+            // Update all mapped elements with translations
+            Object.keys(elementMap).forEach(function(key) {
+                var node = elementMap[key];
+                if (translations[lang][key] && node.parentNode) {
+                    node.textContent = translations[lang][key];
+                }
+            });
+
+            currentLanguage = lang;
+            // Save language preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function restoreLanguagePreference() {
+            var savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage && translations[savedLanguage]) {
+                changeLanguage(savedLanguage);
+            }
+        }
+
+        function toggleLanguageMenu() {
+            var menu = document.getElementById('languageMenu');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById('languageMenu');
+            var switcher = document.getElementById('languageSwitcher');
+            if (menu && switcher && !menu.contains(event.target) && !switcher.contains(event.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Load translations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTranslations();
+            // Restore user's language preference after translations are loaded
+            setTimeout(restoreLanguagePreference, 100);
+        });
+    </script>
+</body>
+</html>

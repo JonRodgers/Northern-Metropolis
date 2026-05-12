@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Territories STEM - Transform your child's future with creative, hands-on STEM education inspired by real-world innovation in architecture and engineering.">
+    <meta name="keywords" content="STEM education, Hong Kong, classes, robotics, engineering, architecture, coding">
+    <title>New Territories STEM - Transform Your Child's Future</title>
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- WhatsApp Widget Styles -->
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            text-decoration: none;
+            font-size: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+            }
+        }
+
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            font-family: 'Century Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .language-switcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        .language-menu {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 998;
+            min-width: 120px;
+            display: none;
+        }
+
+        .language-menu.show {
+            display: block;
+        }
+
+        .language-option {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: 'Century Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            transition: background-color 0.2s ease;
+        }
+
+        .language-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .language-option:first-child {
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .language-option:last-child {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                bottom: 15px;
+                left: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            .language-menu {
+                bottom: 75px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="NT STEM Logo" class="logo-image" onerror="this.style.display='none'">
+                    <div class="logo-text">NEW TERRITORIES<br>STEM SERIES</div>
+                </a>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="program.html">Programs</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="container">
+            <h1>Inspiring the next generation of creative thinkers, innovators and makers</h1>
+            <p>Creative, hands-on learning at the intersection of Science, Technology, Engineering, Art & Mathematics. Inspired by real-world innovation in architecture and engineering.</p>
+            <a href="https://www.atmospheres.hk/booking-1" class="cta-button cta-button-magenta">BOOK YOUR CLASSES HERE</a>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROGRAMS SECTION
+         ============================================ -->
+    <section id="programs" class="section">
+        <div class="container">
+            <h2>Our Programs</h2>
+            <div class="grid-3">
+                <!-- Regular Classes Card -->
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Regular Classes</h3>
+                    <p class="badge">Mon-Fri After School</p>
+                    <p>Weekly classes for beginners, intermediate, and advanced students. Three time slots to fit your schedule.</p>
+                    <div class="price-tag">HK$400/hour</div>
+                    <ul class="feature-list">
+                        <li>Small groups (3+ students)</li>
+                        <li>Age-appropriate curriculum</li>
+                        <li>Hands-on projects</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Holiday Camps Card -->
+                <div class="card">
+                    <div class="card-icon">🏕️</div>
+                    <h3>Holiday Camps</h3>
+                    <p class="badge">Intensive Learning</p>
+                    <p>Full-day immersive STEM experiences during school holidays. Perfect for deep project work and exploration.</p>
+                    <div class="price-tag">Custom Pricing</div>
+                    <ul class="feature-list">
+                        <li>Multi-day programs</li>
+                        <li>Advanced projects</li>
+                        <li>Field trips included</li>
+                        <li>Certificates awarded</li>
+                    </ul>
+                </div>
+
+                <!-- Special Events Card -->
+                <div class="card">
+                    <div class="card-icon">🎂</div>
+                    <h3>Special Events</h3>
+                    <p class="badge">Customized</p>
+                    <p>Birthday parties, school workshops, and corporate team-building events tailored to your needs.</p>
+                    <div class="price-tag">From HK$2,000</div>
+                    <ul class="feature-list">
+                        <li>Custom themes</li>
+                        <li>Group activities</li>
+                        <li>Memorable experiences</li>
+                        <li>Flexible scheduling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Additional Programs -->
+            <div style="margin-top: 3rem; text-align: center;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Also Available</h3>
+                <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+                    <div class="highlight-box">
+                        <strong>Private Classes</strong><br>
+                        One-on-one personalized instruction tailored to your child's interests and pace.
+                    </div>
+                    <div class="highlight-box">
+                        <strong>School Partnerships</strong><br>
+                        Bring STEM education to your school with our curriculum and experienced tutors.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SCHEDULE SECTION
+         ============================================ -->
+    <section id="schedule" class="section section-alt">
+        <div class="container">
+            <h2>Weekly Schedule</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Classes run Monday to Friday at three convenient times
+            </p>
+            
+            <div style="max-width: 700px; margin: 0 auto;">
+                <!-- 4:00 PM Slot -->
+                <div class="schedule-item">
+                    <div class="schedule-time">⏰ 4:00 PM - 5:00 PM</div>
+                    <div class="schedule-level">Beginners (Ages 5-7) | Intermediate (Ages 8-11)</div>
+                    <p style="margin-top: 0.5rem; color: var(--text-light);">
+                        Foundation classes introducing core STEM concepts through creative play and exploration.
+                    </p>
+                </div>
+
+                <!-- 5:00 PM Slot -->
+                <div class="schedule-item">
+                    <div class="schedule-time">⏰ 5:00 PM - 6:00 PM</div>
+                    <div class="schedule-level">Intermediate (Ages 8-11) | Advanced (Ages 12-14)</div>
+                    <p style="margin-top: 0.5rem; color: var(--text-light);">
+                        Project-based learning with deeper technical challenges and real-world applications.
+                    </p>
+                </div>
+
+                <!-- 6:00 PM Slot -->
+                <div class="schedule-item">
+                    <div class="schedule-time">⏰ 6:00 PM - 7:00 PM</div>
+                    <div class="schedule-level">Advanced (Ages 12-18)</div>
+                    <p style="margin-top: 0.5rem; color: var(--text-light);">
+                        Advanced engineering, design thinking, and entrepreneurship for older students.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="program.html" class="cta-button cta-button-learn-more">EXPLORE OUR STEM CLASSES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         WHY CHOOSE US SECTION
+         ============================================ -->
+    <section class="section">
+        <div class="container">
+            <h2>What Makes Us Different</h2>
+            <div class="grid-2">
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🏗️ Architecture & Engineering Focus</h3>
+                    <p>Our curriculum is inspired by real-world innovation in architecture and construction. Students learn from the pioneers who shaped our world—from Isambard Kingdom Brunel to modern engineers.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🎨 Creative STEAM Learning</h3>
+                    <p>We blend Science, Technology, Engineering, Art, and Mathematics. Every project sparks imagination while building technical skills. No boring textbooks—just hands-on creation.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📚 Historical Innovation</h3>
+                    <p>Students explore how technology evolved: from the telephone to smartphones, steam engines to electric vehicles, ancient aqueducts to modern water systems. Understanding the past inspires the future.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🌍 Hong Kong & Global Context</h3>
+                    <p>Learn from Hong Kong's iconic engineering achievements and compare them with international innovations. Understand how cities are built, how infrastructure works, and how to solve real problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         WHY CHOOSE US - STATS & TESTIMONIALS
+         ============================================ -->
+    <section id="why" class="section section-alt">
+        <div class="container">
+            <h2>Why Parents Choose NT STEM</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Unique Classes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3-18</div>
+                    <div class="stat-label">Age Range</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Small Groups</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">HK$400</div>
+                    <div class="stat-label">Per Hour</div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div style="margin-top: 3rem;">
+                <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Student Testimonials</h3>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "My son has never been more excited about learning. He comes home talking about bridges, rockets, and inventions. NT STEM makes STEM actually fun!"
+                    </div>
+                    <div class="testimonial-author">— Parent, Hong Kong</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "The tutors really understand how to inspire kids. They don't just teach facts—they tell stories about real inventors and engineers. My daughter wants to be an architect now!"
+                    </div>
+                    <div class="testimonial-author">— Parent, Hong Kong</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Small class sizes mean my child gets real attention. The projects are creative and challenging. This is exactly what we were looking for."
+                    </div>
+                    <div class="testimonial-author">— Parent, Hong Kong</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         LOCATIONS SECTION
+         ============================================ -->
+    <section id="locations" class="section section-alt">
+        <div class="container">
+            <h2>Our Locations</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Find our STEM classes across Hong Kong
+            </p>
+            
+            <div class="grid-2" style="max-width: 900px; margin: 0 auto;">
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📍 Causeway Bay</h3>
+                    <p><strong>9F, The Hive, V-Point</strong><br>
+                    18 Tang Lung Street, Causeway Bay, Hong Kong</p>
+                    <p style="margin-top: 1rem; color: var(--text-light);">
+                        <strong>Classes:</strong> Beginner, Intermediate, Advanced<br>
+                        <strong>Hours:</strong> Monday - Friday: 4:00 PM - 7:00 PM
+                    </p>
+                    <p style="margin-top: 1rem; color: var(--text-light);">
+                        Our flagship location in the heart of Causeway Bay, offering all three difficulty levels with hands-on STEM learning experiences.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🗺️ More Locations Coming</h3>
+                    <p>We're expanding across Hong Kong to bring STEM education closer to you.</p>
+                    <p style="margin-top: 1rem; color: var(--text-light);">
+                        Check back soon for additional locations in other districts. In the meantime, visit our interactive map to see our current venues and get directions.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        <a href="locations.html" class="cta-button cta-button-locations" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none; border-radius: var(--radius-md); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">View Interactive Map</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TUTORS SECTION
+         ============================================ -->
+    <section id="tutors" class="section">
+        <div class="container">
+            <h2>Meet Our Tutors</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Experienced educators passionate about inspiring the next generation of innovators
+            </p>
+            
+            <div class="grid-3">
+                <!-- Tutor 1 -->
+                <div class="tutor-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍🏫</div>
+                    <div class="tutor-name">Jonathan Rodgers</div>
+                    <div style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Architecture & Engineering</div>
+                    <div class="tutor-bio">
+                        Experienced architect and engineer with a passion for inspiring the next generation of innovators through hands-on STEM education.
+                    </div>
+                </div>
+
+                <!-- Tutor 2 -->
+                <div class="tutor-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👩‍🏫</div>
+                    <div class="tutor-name">Dr Vera Kleesatel</div>
+                    <div style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Science & Technology</div>
+                    <div class="tutor-bio">
+                        PhD in Science Education with extensive experience in developing innovative STEM curricula and mentoring young learners.
+                    </div>
+                </div>
+
+                <!-- Tutor 3 -->
+                <div class="tutor-card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍🏫</div>
+                    <div class="tutor-name">Tutor Name 3</div>
+                    <div style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Specialization 3</div>
+                    <div class="tutor-bio">
+                        Brief bio highlighting experience, qualifications, and passion for STEM education. Include relevant background in engineering, architecture, or technology. (Tutor 3)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; color: var(--white);">
+                Join hundreds of students discovering the joy of creative STEM learning
+            </p>
+            
+            <div class="button-group">
+                <a href="https://www.atmospheres.hk/booking-1" class="cta-button cta-button-magenta">BOOK YOUR STEM CLASS</a>
+                <a href="program.html" class="cta-button cta-button-learn-more">LEARN MORE ABOUT OUR STEM PROGRAM</a>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="mailto:jon.rodgers@atmospheres.hk" class="contact-button contact-button-email">EMAIL US</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://wa.me/85267799324" class="contact-button contact-button-whatsapp">WHATSAPP US</a>
+                </div>
+                <div class="contact-item">
+                    <a href="locations.html" class="contact-button contact-button-locations">OUR LOCATIONS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 New Territories STEM. All rights reserved.</p>
+            <p>Inspiring the next generation of innovators, engineers, and creative thinkers.</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Language Switcher Menu -->
+    <div class="language-menu" id="languageMenu">
+        <button class="language-option" onclick="changeLanguage('en')">English</button>
+        <button class="language-option" onclick="changeLanguage('zh-CN')">中文 (简体)</button>
+        <button class="language-option" onclick="changeLanguage('zh-TW')">繁體中文</button>
+    </div>
+
+    <!-- Language Switcher Button -->
+    <button class="language-switcher" id="languageSwitcher" onclick="toggleLanguageMenu()" title="Change Language">
+        🌐
+    </button>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/85267799324" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        💬
+    </a>
+
+    <!-- Language Switcher Script - Using JSON Translations with Smart Mapping -->
+    <script>
+        var currentLanguage = 'en';
+        var translations = {};
+        var originalContent = {};
+        var elementMap = {};
+
+        // Load translations from JSON file
+        function loadTranslations() {
+            fetch('translations.json')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    translations = data;
+                    mapPageElements();
+                })
+                .catch(function(error) {
+                    console.log('Error loading translations:', error);
+                });
+        }
+
+        // Smart mapping of page elements to translation keys
+        function mapPageElements() {
+            var textMap = {
+                'Home': 'home',
+                'Programs': 'programs',
+                'Locations': 'locations',
+                'Contact': 'contact',
+                'Inspiring the next generation of creative thinkers, innovators and makers': 'inspiring',
+                'Creative, hands-on learning at the intersection of Science, Technology, Engineering, Art & Mathematics. Inspired by real-world innovation in architecture and engineering.': 'creative',
+                'BOOK YOUR CLASSES HERE': 'bookClassesHere',
+                'BOOK YOUR STEM CLASS': 'bookClass',
+                'EXPLORE OUR STEM CLASSES': 'exploreStemClasses',
+                'OUR LOCATIONS': 'ourLocationsButton',
+                'Our Programs': 'ourPrograms',
+                'Regular Classes': 'regularClasses',
+                'Mon-Fri After School': 'monFri',
+                'Weekly classes for beginners, intermediate, and advanced students. Three time slots to fit your schedule.': 'regularDesc',
+                'HK$400/hour': 'price400',
+                'Small groups (3+ students)': 'smallGroups',
+                'Age-appropriate curriculum': 'ageAppropriate',
+                'Hands-on projects': 'handson',
+                'Progress tracking': 'progressTracking',
+                'Holiday Camps': 'holidayCamps',
+                'Intensive Learning': 'intensive',
+                'Full-day immersive STEM experiences during school holidays. Perfect for deep project work and exploration.': 'holidayDesc',
+                'Custom Pricing': 'customPricing',
+                'Multi-day programs': 'multiDay',
+                'Advanced projects': 'advancedProjects',
+                'Field trips included': 'fieldTrips',
+                'Certificates awarded': 'certificates',
+                'Special Events': 'specialEvents',
+                'Customized': 'customized',
+                'Birthday parties, school workshops, and corporate team-building events tailored to your needs.': 'specialDesc',
+                'From HK$2,000': 'from2000',
+                'Custom themes': 'customThemes',
+                'Group activities': 'groupActivities',
+                'Memorable experiences': 'memorable',
+                'Flexible scheduling': 'flexibleScheduling',
+                'Also Available': 'alsoAvailable',
+                'Private Classes': 'privateClasses',
+                'One-on-one personalized instruction tailored to your child\'s interests and pace.': 'privateDesc',
+                'School Partnerships': 'schoolPartnerships',
+                'Bring STEM education to your school with our curriculum and experienced tutors.': 'schoolDesc',
+                'Weekly Schedule': 'weeklySchedule',
+                'Classes run Monday to Friday at three convenient times': 'classesRun',
+                '⏰ 4:00 PM - 5:00 PM': 'time400',
+                'Beginners (Ages 5-7) | Intermediate (Ages 8-11)': 'beginners',
+                'Foundation classes introducing core STEM concepts through creative play and exploration.': 'foundationClasses',
+                '⏰ 5:00 PM - 6:00 PM': 'time500',
+                'Intermediate (Ages 8-11) | Advanced (Ages 12-14)': 'intermediate',
+                'Project-based learning with deeper technical challenges and real-world applications.': 'projectBased',
+                '⏰ 6:00 PM - 7:00 PM': 'time600',
+                'Advanced (Ages 12-18)': 'advanced',
+                'Advanced engineering, design thinking, and entrepreneurship for older students.': 'advancedEng',
+                'LEARN MORE ABOUT OUR STEM PROGRAM': 'learnMore',
+                'What Makes Us Different': 'whatMakes',
+                '🏗️ Architecture & Engineering Focus': 'architecture',
+                'Our curriculum is inspired by real-world innovation in architecture and construction. Students learn from the pioneers who shaped our world—from Isambard Kingdom Brunel to modern engineers.': 'architectureDesc',
+                '🎨 Creative STEAM Learning': 'creative2',
+                'We blend Science, Technology, Engineering, Art, and Mathematics. Every project sparks imagination while building technical skills. No boring textbooks—just hands-on creation.': 'creativeDesc',
+                '📚 Historical Innovation': 'historical',
+                'Students explore how technology evolved: from the telephone to smartphones, steam engines to electric vehicles, ancient aqueducts to modern water systems. Understanding the past inspires the future.': 'historicalDesc',
+                '🌍 Hong Kong & Global Context': 'hongKong',
+                'Learn from Hong Kong\'s iconic engineering achievements and compare them with international innovations. Understand how cities are built, how infrastructure works, and how to solve real problems.': 'hongKongDesc',
+                'Why Parents Choose NT STEM': 'whyParents',
+                '100+': 'unique',
+                'Unique Classes': 'uniqueClasses',
+                '3-18': 'ageRange',
+                'Age Range': 'ageRangeLabel',
+                '3+': 'smallGroupsNum',
+                'Small Groups': 'smallGroupsLabel',
+                'HK$400': 'pricePerHour',
+                'Per Hour': 'perHour',
+                'Student Testimonials': 'testimonials',
+                '"My son has never been more excited about learning. He comes home talking about bridges, rockets, and inventions. NT STEM makes STEM actually fun!"': 'testimonial1',
+                '"The tutors really understand how to inspire kids. They don\'t just teach facts—they tell stories about real inventors and engineers. My daughter wants to be an architect now!"': 'testimonial2',
+                '"Small class sizes mean my child gets real attention. The projects are creative and challenging. This is exactly what we were looking for."': 'testimonial3',
+                '— Parent, Hong Kong': 'parentHK',
+                'Our Locations': 'ourLocations',
+                'Find our STEM classes across Hong Kong': 'findClasses',
+                '9F, The Hive, V-Point': 'causewayBayAddress',
+                '18 Tang Lung Street, Causeway Bay, Hong Kong': 'causewayBayAddress',
+                'Classes:': 'classesAvailableLabel',
+                'Hours:': 'hoursLabel',
+                '📍 Causeway Bay': 'causewayBay',
+                'Our flagship location in the heart of Causeway Bay, offering all three difficulty levels with hands-on STEM learning experiences.': 'causewayDesc',
+                '🗺️ More Locations Coming': 'moreLocations',
+                'We\'re expanding across Hong Kong to bring STEM education closer to you.': 'expanding',
+                'Check back soon for additional locations in other districts. In the meantime, visit our interactive map to see our current venues and get directions.': 'checkBack',
+                'View Interactive Map': 'viewMap',
+                'Meet Our Tutors': 'meetTutors',
+                'Experienced educators passionate about inspiring the next generation of innovators': 'experienced',
+                'Jonathan Rodgers': 'tutorName1',
+                'Architecture & Engineering': 'specialization1',
+                'Experienced architect and engineer with a passion for inspiring the next generation of innovators through hands-on STEM education.': 'tutorBio1',
+                'Dr Vera Kleesatel': 'tutorName2',
+                'Science & Technology': 'specialization2',
+                'PhD in Science Education with extensive experience in developing innovative STEM curricula and mentoring young learners.': 'tutorBio2',
+                'Tutor Name 3': 'tutorName3',
+                'Specialization 3': 'specialization3',
+                'Brief bio highlighting experience, qualifications, and passion for STEM education. Include relevant background in engineering, architecture, or technology. (Tutor 3)': 'tutorBio3',
+                'Ready to Get Started?': 'readyStart',
+                'Join hundreds of students discovering the joy of creative STEM learning': 'joinHundreds',
+                'EMAIL US': 'emailUs',
+                'WHATSAPP US': 'whatsappUs',
+                '© 2026 New Territories STEM. All rights reserved.': 'copyright',
+                'Inspiring the next generation of innovators, engineers, and creative thinkers.': 'inspiringFooter'
+            };
+
+            // Find and store all text nodes
+            var walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            var node;
+            while (node = walker.nextNode()) {
+                var text = node.textContent.trim();
+                if (text && textMap[text]) {
+                    originalContent[textMap[text]] = text;
+                    elementMap[textMap[text]] = node;
+                }
+            }
+        }
+
+        function changeLanguage(lang) {
+            toggleLanguageMenu();
+            
+            if (!translations[lang]) {
+                console.log('Language not available:', lang);
+                return;
+            }
+
+            // Update all mapped elements with translations
+            Object.keys(elementMap).forEach(function(key) {
+                var node = elementMap[key];
+                if (translations[lang][key] && node.parentNode) {
+                    node.textContent = translations[lang][key];
+                }
+            });
+
+            currentLanguage = lang;
+            // Save language preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function restoreLanguagePreference() {
+            var savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage && translations[savedLanguage]) {
+                changeLanguage(savedLanguage);
+            }
+        }
+
+        function toggleLanguageMenu() {
+            var menu = document.getElementById('languageMenu');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById('languageMenu');
+            var switcher = document.getElementById('languageSwitcher');
+            if (menu && switcher && !menu.contains(event.target) && !switcher.contains(event.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Load translations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTranslations();
+            // Restore user's language preference after translations are loaded
+            setTimeout(restoreLanguagePreference, 100);
+        });
+    </script>
+</body>
+</html>

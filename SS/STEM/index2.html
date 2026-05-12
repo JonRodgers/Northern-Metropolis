@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEW TERRITORIES AECO TRAINING FOR INDUSTRY - Professional digital production, AI workflows, and computational design training for architects, engineers, and industry professionals.">
+    <meta name="keywords" content="AECO training, digital production, AI workflows, computational design, architecture, engineering, BIM, Revit, Grasshopper, Rhino">
+    <title>NEW TERRITORIES AECO TRAINING FOR INDUSTRY - Professional Digital Production & AI Workflows</title>
+    
+    <style>
+        /* ============================================
+           NEW TERRITORIES AECO TRAINING - Dark Theme
+           Inspired by The Gnomon Workshop Design
+           ============================================ */
+
+        /* ============================================
+           1. CSS RESET & ROOT VARIABLES
+           ============================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Color Palette - Gnomon Workshop Inspired */
+            --bg-primary: #0a0e27;           /* Deep navy-black */
+            --bg-secondary: #1a1f3a;         /* Dark blue-grey */
+            --bg-tertiary: #252d4a;          /* Medium dark blue */
+            --accent-primary: #00d4ff;       /* Cyan accent */
+            --accent-secondary: #ff6b35;     /* Orange accent */
+            --accent-tertiary: #4ecdc4;      /* Teal accent */
+            --text-primary: #ffffff;         /* White text */
+            --text-secondary: #b0b8d4;       /* Light grey-blue */
+            --text-tertiary: #7a8299;        /* Medium grey-blue */
+            --border-color: #2a3250;         /* Dark border */
+            --success-color: #00d084;        /* Green accent */
+            --warning-color: #ff9f1c;        /* Warm orange */
+            
+            /* Typography */
+            --font-primary: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-secondary: 'Georgia', 'Times New Roman', serif;
+            --font-mono: 'Courier New', monospace;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+            --spacing-xxxl: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* ============================================
+           2. BASE STYLES
+           ============================================ */
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ============================================
+           3. TYPOGRAPHY
+           ============================================ */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            font-family: var(--font-primary);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast), text-shadow var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--accent-secondary);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ============================================
+           4. CONTAINER & LAYOUT
+           ============================================ */
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            box-sizing: border-box;
+        }
+
+        .container-sm {
+            max-width: 1000px;
+        }
+
+        /* ============================================
+           5. HEADER & NAVIGATION
+           ============================================ */
+
+        header {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .navbar {
+            padding: var(--spacing-md) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all var(--transition-normal);
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .logo-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width var(--transition-normal);
+        }
+
+        nav a:hover {
+            color: var(--accent-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            color: var(--bg-primary);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        /* ============================================
+           6. HERO SECTION
+           ============================================ */
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            color: var(--bg-primary);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: 2px solid var(--accent-primary);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           7. FEATURES SECTION
+           ============================================ */
+
+        .features {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: var(--bg-primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .section-title h2 {
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-tertiary);
+            max-width: 600px;
+            margin: var(--spacing-lg) auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--accent-primary);
+        }
+
+        .feature-card h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           8. PROGRAMS SECTION
+           ============================================ */
+
+        .programs {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+        }
+
+        .program-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-header {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            padding: var(--spacing-xl);
+            color: var(--bg-primary);
+        }
+
+        .program-header h3 {
+            color: var(--bg-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .program-level {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .program-body {
+            padding: var(--spacing-xl);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-description {
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.95rem;
+        }
+
+        .program-topics {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .program-topics h4 {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .program-topics ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .program-topics li {
+            color: var(--text-tertiary);
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .program-topics li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        .program-footer {
+            margin-top: auto;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .program-duration {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        /* ============================================
+           9. INDUSTRY PARTNERSHIPS SECTION
+           ============================================ */
+
+        .partnerships {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: var(--bg-primary);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+            align-items: center;
+        }
+
+        .partner-logo {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all var(--transition-normal);
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .partner-name {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* ============================================
+           10. CREDENTIALS SECTION
+           ============================================ */
+
+        .credentials {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+        }
+
+        .credential-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--accent-primary);
+            transition: all var(--transition-normal);
+        }
+
+        .credential-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .credential-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--accent-primary);
+        }
+
+        .credential-item h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .credential-item p {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           11. TESTIMONIALS SECTION
+           ============================================ */
+
+        .testimonials {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: var(--bg-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xxl);
+        }
+
+        .testimonial-card {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-md);
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .testimonial-role {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           12. CTA SECTION
+           ============================================ */
+
+        .cta-section {
+            padding: var(--spacing-xxxl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            color: var(--bg-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-section p {
+            color: var(--bg-primary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .cta-section .btn-primary {
+            background: var(--bg-primary);
+            color: var(--accent-primary);
+            border: 2px solid var(--bg-primary);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: transparent;
+            color: var(--bg-primary);
+        }
+
+        /* ============================================
+           13. FOOTER
+           ============================================ */
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-xxl) var(--spacing-lg) var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .footer-section h4 {
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-section a {
+            color: var(--text-tertiary);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            transition: all var(--transition-normal);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           14. RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: var(--spacing-md);
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .features-grid,
+            .programs-grid,
+            .credentials-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: var(--spacing-xl) var(--spacing-md);
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .features,
+            .programs,
+            .partnerships,
+            .credentials,
+            .testimonials,
+            .cta-section {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    NT AECO
+                    <div class="logo-subtitle">Training for Industry</div>
+                </div>
+                <ul>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#credentials">Credentials</a></li>
+                    <li><a href="#contact" class="cta-button">Enroll Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Digital Production Skills</h1>
+            <p class="hero-subtitle">Professional AECO Training for Industry Leaders</p>
+            <p class="hero-description">
+                Master cutting-edge digital production, AI workflows, and computational design. 
+                Designed for architects, engineers, students, and practice directors who demand excellence 
+                in the evolving landscape of architecture, engineering, and construction.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Start Learning Today</button>
+                <button class="btn-secondary">Explore Programs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FEATURES SECTION
+         ============================================ -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose NT AECO Training</h2>
+                <p>Industry-leading curriculum designed by professionals for professionals</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Industry-Focused</h3>
+                    <p>Curriculum developed with leading architecture and engineering firms to ensure real-world relevance and immediate applicability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI & Automation</h3>
+                    <p>Master cutting-edge AI workflows and automation techniques that are transforming the AEC industry today.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Computational Design</h3>
+                    <p>Learn parametric modeling, generative design, and algorithmic thinking for complex architectural challenges.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Professional Mentorship</h3>
+                    <p>Learn directly from industry veterans with decades of experience in digital production and design innovation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Standards</h3>
+                    <p>Training aligned with international BIM standards, ISO 19650, and industry best practices across regions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Career Advancement</h3>
+                    <p>Gain certifications and credentials recognized by leading firms, opening doors to senior positions and leadership roles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROGRAMS SECTION
+         ============================================ -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Training Programs</h2>
+                <p>Comprehensive courses from foundational to advanced levels</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Digital Production Fundamentals</h3>
+                        <div class="program-level">Beginner to Intermediate</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Master the essentials of digital production in architecture and engineering. Learn industry-standard software and workflows.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>Revit Fundamentals & BIM Workflows</li>
+                                <li>Rhino & Grasshopper Basics</li>
+                                <li>Digital Visualization Techniques</li>
+                                <li>Project Documentation Standards</li>
+                                <li>Collaboration & File Management</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 8 weeks | 40 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Advanced BIM & Coordination</h3>
+                        <div class="program-level">Intermediate to Advanced</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Develop expertise in BIM coordination, clash detection, and multi-disciplinary project management.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>BIM Execution Planning (BEP)</li>
+                                <li>Clash Detection & Resolution</li>
+                                <li>Multi-Discipline Coordination</li>
+                                <li>Navisworks & Coordination Tools</li>
+                                <li>ISO 19650 Compliance</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 10 weeks | 50 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Computational Design & Automation</h3>
+                        <div class="program-level">Advanced</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Harness the power of algorithms and parametric design to solve complex architectural and engineering challenges.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>Grasshopper Advanced Scripting</li>
+                                <li>Generative Design Principles</li>
+                                <li>Python for AEC Automation</li>
+                                <li>Optimization & Performance</li>
+                                <li>Real-World Case Studies</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 12 weeks | 60 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>AI Workflows & Digital Innovation</h3>
+                        <div class="program-level">Advanced</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Explore emerging AI technologies and their applications in architectural design, analysis, and project delivery.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>AI in Design & Analysis</li>
+                                <li>Machine Learning Fundamentals</li>
+                                <li>Predictive Analytics for AEC</li>
+                                <li>Digital Twin Technologies</li>
+                                <li>Future-Ready Workflows</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 10 weeks | 50 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Leadership & Practice Direction</h3>
+                        <div class="program-level">Executive</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Strategic training for practice directors and leaders implementing digital transformation in their organizations.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>Digital Strategy & Roadmapping</li>
+                                <li>Team Development & Training</li>
+                                <li>Technology Implementation</li>
+                                <li>ROI & Business Case Development</li>
+                                <li>Industry Trends & Future Planning</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 6 weeks | 30 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Specialized Workshops</h3>
+                        <div class="program-level">Flexible</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">Short-form intensive workshops on specific tools, techniques, and emerging technologies in the AEC industry.</p>
+                        <div class="program-topics">
+                            <h4>Topics Covered</h4>
+                            <ul>
+                                <li>Dynamo for Revit Automation</li>
+                                <li>Unreal Engine for Visualization</li>
+                                <li>Point Cloud Processing</li>
+                                <li>Drone & Photogrammetry</li>
+                                <li>Custom Tool Development</li>
+                            </ul>
+                        </div>
+                        <div class="program-footer">
+                            <div class="program-duration">⏱️ 2-4 weeks | 10-20 hours</div>
+                            <button class="btn-primary" style="width: 100%;">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INDUSTRY PARTNERSHIPS SECTION
+         ============================================ -->
+    <section class="partnerships">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industry Partners & Collaborators</h2>
+                <p>Trusted by leading architecture, engineering, and construction firms</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <div class="partner-name">Autodesk</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-name">McNeel Rhino</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-name">Bentley Systems</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-name">Nemetschek</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-name">Trimble</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-name">Epic BIM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CREDENTIALS SECTION
+         ============================================ -->
+    <section class="credentials" id="credentials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Credentials & Certifications</h2>
+                <p>Industry-recognized qualifications that advance your career</p>
+            </div>
+            <div class="credentials-grid">
+                <div class="credential-item">
+                    <div class="credential-icon">🏆</div>
+                    <h3>NT AECO Certified Professional</h3>
+                    <p>Comprehensive certification demonstrating mastery of digital production and BIM workflows across multiple disciplines.</p>
+                </div>
+                <div class="credential-item">
+                    <div class="credential-icon">🎓</div>
+                    <h3>Specialized Track Certificates</h3>
+                    <p>Focused credentials in computational design, AI workflows, BIM coordination, and digital innovation.</p>
+                </div>
+                <div class="credential-item">
+                    <div class="credential-icon">📜</div>
+                    <h3>Continuing Education Credits</h3>
+                    <p>AIA, RIBA, and other professional body approved credits for ongoing professional development requirements.</p>
+                </div>
+                <div class="credential-item">
+                    <div class="credential-icon">🌟</div>
+                    <h3>Industry Recognition</h3>
+                    <p>Credentials recognized by leading firms, enabling career advancement and leadership opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS SECTION
+         ============================================ -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Students Say</h2>
+                <p>Real feedback from professionals who transformed their careers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        The computational design program completely transformed how I approach complex architectural challenges.
+                        The instructors' real-world experience made every lesson immediately applicable to my projects.
+                    </p>
+                    <div class="testimonial-author">Sarah Chen</div>
+                    <div class="testimonial-role">Senior Architect, Global Design Studio</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        As a practice director, this leadership program gave me the strategic framework to implement digital
+                        transformation across our entire organization. Highly recommended for anyone leading a firm.
+                    </p>
+                    <div class="testimonial-author">Michael Rodriguez</div>
+                    <div class="testimonial-role">Practice Director, International Architecture Firm</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">
+                        The BIM coordination course elevated my skills to a level I didn't think was possible.
+                        I've already implemented these techniques on three major projects with significant time savings.
+                    </p>
+                    <div class="testimonial-author">James Park</div>
+                    <div class="testimonial-role">BIM Manager, Engineering Consultancy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CALL-TO-ACTION SECTION
+         ============================================ -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Career?</h2>
+            <p>Join hundreds of professionals who have advanced their skills and career prospects with NT AECO Training.</p>
+            <button class="btn-primary">Enroll in a Program Today</button>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About NT AECO</h4>
+                    <p style="color: var(--text-tertiary); font-size: 0.9rem;">
+                        Leading provider of professional digital production and computational design training for the architecture,
+                        engineering, and construction industry.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="YouTube">▶</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="#programs">Digital Production Fundamentals</a></li>
+                        <li><a href="#programs">Advanced BIM & Coordination</a></li>
+                        <li><a href="#programs">Computational Design</a></li>
+                        <li><a href="#programs">AI Workflows</a></li>
+                        <li><a href="#programs">Leadership Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog & Articles</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact & Support</h4>
+                    <ul>
+                        <li><a href="mailto:info@ntaeco.com">info@ntaeco.com</a></li>
+                        <li><a href="tel:+85212345678">+852 1234 5678</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Schedule a Demo</a></li>
+                        <li><a href="#">Corporate Training</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NEW TERRITORIES AECO TRAINING FOR INDUSTRY. All rights reserved. |
+                <a href="#" style="color: var(--accent-primary);">Privacy Policy</a> |
+                <a href="#" style="color: var(--accent-primary);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Territories STEM - Real-world architecture, engineering, and technology education in Hong Kong">
+    <title>New Territories STEM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Century Gothic', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        header {
+            background-color: #f5f5f5;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #0066cc;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #0066cc;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        nav {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b35;
+            color: white;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #e55a24;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section h2 {
+            font-size: 2rem;
+            color: #0066cc;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        
+        section h3 {
+            font-size: 1.4rem;
+            color: #004a99;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pathway {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+        }
+        
+        .pathway h3 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .level {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .level h4 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-member {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .team-member h4 {
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+        
+        .programs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .programs-table th,
+        .programs-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .programs-table th {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .programs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .value-card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+            border-top: 3px solid #0066cc;
+        }
+        
+        .value-card h4 {
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-contact {
+            margin: 1rem 0;
+        }
+        
+        .footer-contact a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+        
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .whatsapp-link:hover {
+            background-color: #20ba58;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            text-decoration: none;
+            font-size: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+            }
+            
+            .programs-table {
+                font-size: 0.9rem;
+            }
+            
+            .programs-table th,
+            .programs-table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The best STEM classes in Hong Kong by New Territories</h1>
+        <p>Building the Future Through Real-World Architecture, Engineering & Technology</p>
+        <nav>
+            <a href="#mission">Mission</a>
+            <a href="#pathways">Pathways</a>
+            <a href="#team">Team</a>
+            <a href="#programs">Programs</a>
+            <a href="#values">Values</a>
+            <a href="https://www.atmospheres.hk/booking-1">Book Now</a>
+        </nav>
+    </header>
+    
+    <div class="hero">
+        <h2>Where Young Minds Learn to Design, Build, and Innovate</h2>
+        <p>Real-world STEM education rooted in actual projects, real outcomes, and creative problem-solving</p>
+        <a href="#pathways" class="cta-button">Explore Our Programs</a>
+        <a href="https://www.atmospheres.hk/booking-1" class="cta-button" style="background-color: #004a99; margin-left: 1rem;">Book Now</a>
+    </div>
+    
+    <section id="mission">
+        <h2>Our Mission</h2>
+        <p>We believe STEM education should be rooted in <strong>real projects, real outcomes, and real-world problem solving</strong>. We don't teach STEM in isolation—we connect it to how the world works. Our approach is grounded in <strong>real outcomes</strong>—when our students build something, they create value. When they solve a problem, it's for real stakeholders.</p>
+        <p>Through architecture, engineering, digital design, and innovative coding practices, we empower students at every age to become creative, critical thinkers and skilled makers. Our approach integrates technical knowledge with artistic vision—because the world needs people who can imagine, design, and build.</p>
+        <p>Learn more about our practice: <a href="https://www.atmospheres.hk" target="_blank">www.atmospheres.hk</a></p>
+    </section>
+    
+    <section id="pathways">
+        <h2>Three Pathways to Excellence</h2>
+        
+        <div class="pathway">
+            <h3>🏗️ Pathway 1: Young Builders (Ages 5-12)</h3>
+            <p><strong>After-School Classes | Project-Based Learning</strong></p>
+            <p>For curious kids who want to build, design, and explore how the world works. We introduce fundamental STEM concepts through hands-on activities, creative challenges, and age-appropriate projects that spark genuine curiosity.</p>
+            
+            <div class="level">
+                <h4>Level 1: Foundations of Making (Ages 5-7)</h4>
+                <ul>
+                    <li>Spatial awareness and design thinking</li>
+                    <li>Building with diverse materials (wood, cardboard, LEGO, natural materials)</li>
+                    <li>Understanding balance, stability, and basic engineering principles</li>
+                    <li>Design challenges: shelters, playgrounds, bridges</li>
+                    <li>Hands-on workshops and collaborative projects</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Level 2: Young Architects & Engineers (Ages 8-10)</h4>
+                <ul>
+                    <li>Drawing, sketching, and technical communication</li>
+                    <li>Introduction to digital design (SketchUp fundamentals)</li>
+                    <li>Sustainable design and environmental responsibility</li>
+                    <li>Case studies of amazing buildings and structures</li>
+                    <li>Group projects: design a community space, create miniature cities</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Level 3: Junior Designers (Ages 11-12)</h4>
+                <ul>
+                    <li>Advanced 3D design and modeling</li>
+                    <li>Structural engineering: load-bearing systems, bridges, towers</li>
+                    <li>Introduction to computational and algorithmic thinking</li>
+                    <li>Project management: planning, budgeting, execution</li>
+                    <li>Professional presentation and communication skills</li>
+                    <li>Capstone projects with real-world outcomes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pathway">
+            <h3>🎓 Pathway 2: Future Innovators (High School & College)</h3>
+            <p><strong>University Prep Programs | Career Pathway Discovery</strong></p>
+            <p>For ambitious students exploring architecture, engineering, urban design, and tech careers. We offer intensive programs designed to prepare students for advanced study and professional success.</p>
+            
+            <div class="level">
+                <h4>Architectural Design Intensive (16 weeks)</h4>
+                <p>Professional-level architectural education covering:</p>
+                <ul>
+                    <li>Design thinking and problem-solving methodologies</li>
+                    <li>Digital representation and SketchUp/Rhino modeling</li>
+                    <li>Climate-responsive and bioclimatic design</li>
+                    <li>Materials, structures, and building systems</li>
+                    <li>Urban design and community impact</li>
+                    <li>Phenomenology: creating spaces that move people emotionally</li>
+                    <li>Capstone project with mentorship from practicing architects</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Engineering & Digital Innovation Track</h4>
+                <ul>
+                    <li>BIM Software (Revit, Navisworks) and integrated project delivery</li>
+                    <li>Parametric and computational design</li>
+                    <li>3D printing and digital fabrication</li>
+                    <li>Smart building systems and IoT</li>
+                    <li>Real-world case studies from major projects</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Urban Futures Program (10 weeks)</h4>
+                <ul>
+                    <li>Urban planning and city design principles</li>
+                    <li>Sustainable and climate-responsive urbanism</li>
+                    <li>Technology in cities: smart sensors and data visualization</li>
+                    <li>Community engagement and participatory design</li>
+                    <li>Analysis of Hong Kong, Greater Bay Area, and Asian cities</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Vibe Coding for Creative Technologists (12 weeks)</h4>
+                <p>Learning to code with aesthetic intention and emotional resonance:</p>
+                <ul>
+                    <li>Code as creative expression—moving beyond functional to beautiful</li>
+                    <li>Web development and creative coding (JavaScript, p5.js, Processing)</li>
+                    <li>Generative design and algorithmic thinking</li>
+                    <li>Building aesthetically-driven digital experiences</li>
+                    <li>Portfolio projects: mood-based platforms, design systems, interactive installations</li>
+                    <li>Integration of technology with culture and emotion</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pathway">
+            <h3>💼 Pathway 3: Professional Development (Adults)</h3>
+            <p><strong>Business Training & IT Skills for Career Development</strong></p>
+            <p>For working professionals who want to master digital innovation, computational thinking, and industry-relevant skills they can apply immediately.</p>
+            
+            <div class="level">
+                <h4>Vibe Coding Bootcamp (8 weeks)</h4>
+                <p>Master coding as both technical and creative discipline:</p>
+                <ul>
+                    <li>Foundations: where great design and great code intersect</li>
+                    <li>Web development: HTML, CSS, JavaScript with aesthetic focus</li>
+                    <li>Creative coding: Processing, p5.js, generative design</li>
+                    <li>Interactive design and user experience</li>
+                    <li>Full-stack project development and deployment</li>
+                    <li>Build a professional portfolio</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>Digital Architecture & BIM (6 weeks)</h4>
+                <ul>
+                    <li>BIM fundamentals: Revit, Navisworks, integrated project delivery</li>
+                    <li>Computational and parametric design</li>
+                    <li>Digital fabrication: 3D printing and CNC</li>
+                    <li>Data analytics in construction and project management</li>
+                    <li>Real-world case studies and industry practices</li>
+                </ul>
+            </div>
+            
+            <div class="level">
+                <h4>IT Skills for Better Business (Flexible Modules)</h4>
+                <ul>
+                    <li>Workflow automation and optimization</li>
+                    <li>Data analytics and dashboard development</li>
+                    <li>Cloud technologies and collaboration tools</li>
+                    <li>AI and machine learning applications</li>
+                    <li>Cybersecurity and digital safety</li>
+                    <li>Project management and remote collaboration</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="team">
+        <h2>Our Teaching Team</h2>
+        
+        <div class="team-member">
+            <h4>Jonathan Rodgers — Founder & Principal</h4>
+            <p>Jonathan is an architect, designer, and educator with 20+ years of experience leading real-world projects in the architecture and construction industry. Through <strong>Atmospheres</strong>, he designs and builds spaces that shape communities. He brings this real-world expertise directly into our classrooms.</p>
+            <p><strong>Why it matters for students:</strong></p>
+            <ul>
+                <li>Learn from someone who designs and builds actual projects</li>
+                <li>Understand how architectural thinking translates to real-world impact</li>
+                <li>Direct mentorship from an experienced practitioner</li>
+                <li>Exposure to international projects and practices</li>
+            </ul>
+            <p>Learn more: <a href="https://www.atmospheres.hk" target="_blank">www.atmospheres.hk</a></p>
+        </div>
+        
+        <div class="team-member">
+            <h4>Dr. Vera Kleesatel, PhD — Architecture Educator & Theorist</h4>
+            <p>Dr. Vera teaches architecture and urbanism at Hong Kong University and City University of Hong Kong, bringing cutting-edge academic thinking, research methodology, and theoretical frameworks from contemporary design discourse.</p>
+            <p><strong>Expertise includes:</strong></p>
+            <ul>
+                <li>Architecture education and pedagogy</li>
+                <li>Urban design and community transformation</li>
+                <li>Sustainability and climate-responsive design</li>
+                <li>Design research and critical thinking</li>
+            </ul>
+            <p><strong>Why it matters for students:</strong></p>
+            <ul>
+                <li>Learn from university-level faculty</li>
+                <li>Understand academic pathways to design careers</li>
+                <li>Engage with current research and thinking</li>
+                <li>Bridge between theory and practice</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="programs">
+        <h2>Programs at a Glance</h2>
+        <table class="programs-table">
+            <thead>
+                <tr>
+                    <th>Age Group</th>
+                    <th>Program</th>
+                    <th>Duration</th>
+                    <th>Focus</th>
+                    <th>Outcomes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5-7</td>
+                    <td>Foundations of Making</td>
+                    <td>16 weeks</td>
+                    <td>Material exploration, spatial thinking</td>
+                    <td>Portfolio, foundational skills, confidence</td>
+                </tr>
+                <tr>
+                    <td>8-10</td>
+                    <td>Young Architects & Engineers</td>
+                    <td>16 weeks</td>
+                    <td>3D design, engineering basics</td>
+                    <td>SketchUp skills, completed projects</td>
+                </tr>
+                <tr>
+                    <td>11-12</td>
+                    <td>Junior Designers</td>
+                    <td>16 weeks</td>
+                    <td>Advanced design, structural systems</td>
+                    <td>Professional portfolio, capstone project</td>
+                </tr>
+                <tr>
+                    <td>High School</td>
+                    <td>Architectural Intensive</td>
+                    <td>16 weeks</td>
+                    <td>Professional-level design</td>
+                    <td>University-ready portfolio, mentorship</td>
+                </tr>
+                <tr>
+                    <td>High School/College</td>
+                    <td>Engineering & Digital Innovation</td>
+                    <td>Flexible</td>
+                    <td>BIM, computational design</td>
+                    <td>Technical mastery, industry skills</td>
+                </tr>
+                <tr>
+                    <td>High School/College</td>
+                    <td>Urban Futures</td>
+                    <td>10 weeks</td>
+                    <td>City design, sustainability</td>
+                    <td>Urban design thinking, analysis skills</td>
+                </tr>
+                <tr>
+                    <td>High School/College</td>
+                    <td>Vibe Coding</td>
+                    <td>12 weeks</td>
+                    <td>Creative coding, aesthetic programming</td>
+                    <td>Portfolio of digital projects, coding fluency</td>
+                </tr>
+                <tr>
+                    <td>Adults</td>
+                    <td>Vibe Coding Bootcamp</td>
+                    <td>8 weeks</td>
+                    <td>Professional coding with aesthetic vision</td>
+                    <td>Job-ready skills, portfolio, network</td>
+                </tr>
+                <tr>
+                    <td>Adults</td>
+                    <td>Digital Architecture & BIM</td>
+                    <td>6 weeks</td>
+                    <td>Professional BIM and design tech</td>
+                    <td>Industry certification, career advancement</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section id="why">
+        <h2>Why Choose New Territories STEM?</h2>
+        <p><strong>🏗️ Rooted in Real-World Practice</strong><br>
+        Our founders have delivered major projects in Hong Kong and Asia-Pacific. Students learn from practitioners, not just educators. When we teach design thinking, we're drawing on real experience shipping real projects with real constraints and real impact.</p>
+        
+        <p><strong>🎯 Clear Pathways Forward</strong><br>
+        Whether your interest is architecture, engineering, computational design, or coding—we have structured programs that lead somewhere. High school programs prepare you for university. Adult programs lead to career advancement.</p>
+        
+        <p><strong>🌍 Hong Kong Context</strong><br>
+        We teach in and about Hong Kong—one of the world's most dynamic environments for design and building. Students understand local context, global standards, and thinking at every scale from details to entire cities.</p>
+        
+        <p><strong>🤝 Real Mentorship</strong><br>
+        Learn directly from architects, engineers, educators, and innovators through mentorship relationships with professionals actively working in the field.</p>
+        
+        <p><strong>🎨 Creative + Technical Balance</strong><br>
+        The best STEM education marries creative thinking with technical skill. You'll learn to code, design, and build—always with attention to beauty, emotion, and human experience.</p>
+        
+        <p><strong>🌱 Sustainable & Responsible</strong><br>
+        Sustainability thinking runs through everything we do—environmental design, ethical technology, social responsibility.</p>
+    </section>
+    
+    <section id="values">
+        <h2>Our Values</h2>
+        <div class="values">
+            <div class="value-card">
+                <h4>✨ Creativity</h4>
+                <p>Every student is a creative thinker and maker</p>
+            </div>
+            <div class="value-card">
+                <h4>🏗️ Real-World Relevance</h4>
+                <p>Teaching grounded in actual projects and practices</p>
+            </div>
+            <div class="value-card">
+                <h4>🌍 Responsibility</h4>
+                <p>Sustainable, ethical, socially conscious design</p>
+            </div>
+            <div class="value-card">
+                <h4>🤝 Mentorship</h4>
+                <p>Learn directly from working professionals</p>
+            </div>
+            <div class="value-card">
+                <h4>🎯 Growth</h4>
+                <p>Develop both technical and human skills</p>
+            </div>
+            <div class="value-card">
+                <h4>🌱 Inclusion</h4>
+                <p>STEM learning accessible to every curious mind</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <h3>New Territories STEM</h3>
+        <p>Building the Future Through Real-World Architecture, Engineering & Technology</p>
+        
+        <div class="footer-contact">
+            <p><strong>Get In Touch</strong></p>
+            <p>📍 New Territories, Hong Kong</p>
+            <p>📧 Email: <a href="mailto:jon.rodgers@atmospheres.hk">jon.rodgers@atmospheres.hk</a></p>
+            <p>🌐 <a href="https://www.atmospheres.hk" target="_blank">www.atmospheres.hk</a></p>
+            <a href="https://wa.me/85267799324" class="whatsapp-link" target="_blank" rel="noopener noreferrer">
+                📱 WhatsApp: +852 6779 9324
+            </a>
+        </div>
+        
+        <p style="margin-top: 2rem; font-size: 0.9rem;">&copy; 2026 New Territories STEM. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/85267799324" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        💬
+    </a>
+</body>
+</html>
