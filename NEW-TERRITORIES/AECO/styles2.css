@@ -164,6 +164,14 @@ header {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    width: 100%;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .logo {
@@ -215,7 +223,7 @@ header {
 
 /* Mobile Menu Toggle */
 .menu-toggle {
-    display: none;
+    display: flex;
     flex-direction: column;
     background: none;
     border: none;
@@ -228,7 +236,7 @@ header {
 .menu-toggle span {
     width: 24px;
     height: 2.5px;
-    background-color: var(--white);
+    background-color: #00d4ff;
     border-radius: 2px;
     transition: all var(--transition-normal);
 }
@@ -245,77 +253,108 @@ header {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
-nav ul {
-    display: flex;
+/* Navigation Menu */
+.nav-menu {
+    display: none;
     list-style: none;
-    gap: var(--spacing-lg);
-    align-items: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
 }
 
-nav ul.nav-menu {
+.nav-menu.active {
     display: flex;
-    list-style: none;
-    gap: var(--spacing-lg);
-    align-items: center;
 }
 
-@media (max-width: 768px) {
-    nav ul.nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: #0f0f0f;
-        flex-direction: column;
-        padding: var(--spacing-md);
-        box-shadow: var(--shadow-md);
-        gap: 0;
-    }
-
-    nav ul.nav-menu.active {
-        display: flex;
-    }
-
-    nav ul.nav-menu li {
-        margin: var(--spacing-sm) 0;
-    }
+.nav-menu li {
+    margin: var(--spacing-sm) 0;
 }
 
-nav a {
-    color: var(--text-secondary);
+.nav-menu a {
+    color: var(--white);
     font-weight: 500;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all var(--transition-normal);
-    position: relative;
+    transition: color var(--transition-fast);
     display: block;
     padding: var(--spacing-sm) 0;
+    font-family: 'Century Gothic', sans-serif;
 }
 
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent-primary);
-    transition: width var(--transition-normal);
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: #ff00ff;
 }
 
-nav a:hover {
+.nav-menu .cta-button {
+    background: none;
+    color: var(--text-secondary);
+    padding: var(--spacing-sm) 0;
+    box-shadow: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.nav-menu .cta-button:hover {
     color: var(--accent-primary);
+    transform: none;
+    box-shadow: none;
 }
 
-nav a:hover::after {
-    width: 100%;
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        background-color: transparent;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        gap: var(--spacing-lg);
+    }
+
+    .nav-menu li {
+        margin: 0;
+    }
+
+    .nav-menu a {
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: var(--spacing-sm) 0;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: var(--accent-primary);
+    }
+
+    .nav-menu .cta-button {
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .nav-menu .cta-button:hover {
+        color: var(--accent-primary);
+    }
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
-    color: #0f0f0f;
+    background: #ffffff;
+    color: #000000;
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--radius-lg);
     font-weight: 700;
@@ -330,7 +369,7 @@ nav a:hover::after {
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
-    color: #0f0f0f;
+    color: #000000;
 }
 
 /* ============================================
