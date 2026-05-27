@@ -1,0 +1,11 @@
+{
+  "workbench.activityBar.location": "default",
+  "workbench.sideBar.location": "left",
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.activityBar.iconClickAction": "toggle",
+  "zoo-code.vsCodeLmModelSelector": {},
+  "workbench.activityBar.hideCustomizations": false,
+  "workbench.activityBar.hidden": [],
+  "workbench.view.zoo-code-ActivityBar.visible": true,
+  "workbench.view.zoo-code-ActivityBar.location": "secondary"
+}

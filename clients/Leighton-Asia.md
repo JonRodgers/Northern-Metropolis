@@ -220,3 +220,23 @@ Thank you for considering this opportunity, and we look forward to hearing from 
 Best regards,
 Jonathan Rodgers
 atmospheres.hk
+
+---
+
+## Email to John Moss
+
+Dear John,
+
+I hope this message finds you well. I wanted to reach out to congratulate you on Leighton Asia's exciting new data centre project – it's a significant undertaking and we're impressed by the scale and ambition of the initiative.
+
+We've been following your recent organisational changes and understand that you've had to make some difficult decisions regarding your team structure. We recognise that managing complex projects like this requires strong technical leadership and coordination, particularly when it comes to BIM and digital delivery.
+
+Over the years, we've had the privilege of supporting Leighton Asia on some of your most iconic projects. We were proud to contribute to the Hong Kong International Airport Third Runway and Concourse works, and we led the BIM coordination for the Integrated Waste Management Facility 2. Additionally, during our time at Arup, we served as BIM lead and coordinator on numerous MTR projects, including Exhibition Station and the LCSD Swimming Pool and Sports Centre on Harbour Road in Wanchai.
+
+Given our deep familiarity with your project delivery standards and the complexity of your current initiatives, we wanted to let you know that atmospheres.hk is here if you need any support. Whether it's BIM coordination, digital delivery strategy, or technical expertise, we're well-positioned to step in and ensure continuity on your projects.
+
+We'd welcome the opportunity to discuss how we might be able to assist, should the need arise. Please feel free to reach out at your convenience.
+
+Best regards,
+Jonathan Rodgers
+atmospheres.hk

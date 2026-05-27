@@ -1,0 +1,6 @@
+[
+  {
+    "key": "ctrl+shift+z",
+    "command": "workbench.view.extension.zoo-code-ActivityBar"
+  }
+]

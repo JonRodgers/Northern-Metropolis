@@ -1,0 +1,39 @@
+{
+  "name": "northern-metropolis-osiris-web",
+  "version": "1.0.0",
+  "description": "Interactive 3D globe visualization for Northern Metropolis OSIRIS smart city digital twin",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "python -m http.server 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "northern-metropolis",
+    "smart-city",
+    "digital-twin",
+    "3d-globe",
+    "visualization",
+    "three.js",
+    "hong-kong"
+  ],
+  "author": "Northern Metropolis Development Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonRodgers/Northern-Metropolis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JonRodgers/Northern-Metropolis/issues"
+  },
+  "homepage": "https://github.com/JonRodgers/Northern-Metropolis#readme"
+}

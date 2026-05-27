@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northern Metropolis OSIRIS - Interactive Globe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #globe-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ui-panel {
+            position: absolute;
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .header-panel {
+            top: 20px;
+            left: 20px;
+            max-width: 400px;
+        }
+
+        .header-panel h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #64c8ff;
+            text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
+        .header-panel p {
+            font-size: 12px;
+            color: #a0a0a0;
+            margin-bottom: 15px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .kpi-item {
+            background: rgba(100, 200, 255, 0.1);
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .kpi-label {
+            font-size: 11px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .kpi-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #64c8ff;
+        }
+
+        .kpi-unit {
+            font-size: 10px;
+            color: #808080;
+            margin-left: 3px;
+        }
+
+        .controls-panel {
+            bottom: 20px;
+            left: 20px;
+            max-width: 300px;
+        }
+
+        .controls-panel h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #64c8ff;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+        }
+
+        .control-label {
+            font-size: 12px;
+            color: #a0a0a0;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        button {
+            background: rgba(100, 200, 255, 0.2);
+            border: 1px solid rgba(100, 200, 255, 0.4);
+            color: #64c8ff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        button:hover {
+            background: rgba(100, 200, 255, 0.4);
+            border-color: rgba(100, 200, 255, 0.6);
+            box-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
+        }
+
+        button.active {
+            background: rgba(100, 200, 255, 0.6);
+            border-color: rgba(100, 200, 255, 0.8);
+        }
+
+        .info-panel {
+            top: 20px;
+            right: 20px;
+            max-width: 350px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .info-panel h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #64c8ff;
+        }
+
+        .zone-info {
+            background: rgba(100, 200, 255, 0.1);
+            border-left: 3px solid rgba(100, 200, 255, 0.5);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .zone-name {
+            font-weight: bold;
+            color: #64c8ff;
+            margin-bottom: 5px;
+        }
+
+        .zone-stat {
+            font-size: 12px;
+            color: #a0a0a0;
+            margin: 3px 0;
+        }
+
+        .stat-value {
+            color: #64c8ff;
+            font-weight: bold;
+        }
+
+        .legend {
+            bottom: 20px;
+            right: 20px;
+            max-width: 250px;
+        }
+
+        .legend h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: #64c8ff;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 8px;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 200;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(100, 200, 255, 0.2);
+            border-top: 3px solid #64c8ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #64c8ff;
+            font-size: 14px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 12px;
+            pointer-events: none;
+            display: none;
+            z-index: 150;
+            max-width: 200px;
+        }
+
+        .tooltip.visible {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .ui-panel {
+                font-size: 12px;
+                padding: 15px;
+            }
+
+            .header-panel h1 {
+                font-size: 18px;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-panel {
+                max-width: 280px;
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="globe-canvas"></canvas>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Initializing Northern Metropolis OSIRIS...</div>
+    </div>
+
+    <!-- Header Panel with KPIs -->
+    <div class="ui-panel header-panel">
+        <h1>🌍 Northern Metropolis OSIRIS</h1>
+        <p>AI-Powered Smart City Digital Twin</p>
+        
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <div class="kpi-label">Population</div>
+                <div class="kpi-value">2.5<span class="kpi-unit">M</span></div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-label">Area</div>
+                <div class="kpi-value">300<span class="kpi-unit">km²</span></div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-label">Renewable Energy</div>
+                <div class="kpi-value" id="kpi-renewable">45<span class="kpi-unit">%</span></div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-label">Green Space</div>
+                <div class="kpi-value" id="kpi-green">31<span class="kpi-unit">%</span></div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-label">Air Quality</div>
+                <div class="kpi-value" id="kpi-aqi">65<span class="kpi-unit">AQI</span></div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-label">Sustainability</div>
+                <div class="kpi-value" id="kpi-sustainability">72<span class="kpi-unit">%</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="ui-panel info-panel">
+        <h3>📍 Development Zones</h3>
+        <div class="zone-info">
+            <div class="zone-name">Lok Ma Chau Loop</div>
+            <div class="zone-stat">Area: <span class="stat-value">87 km²</span></div>
+            <div class="zone-stat">Population: <span class="stat-value">650K</span></div>
+            <div class="zone-stat">Buildings: <span class="stat-value">2,500</span></div>
+            <div class="zone-stat">Green Space: <span class="stat-value">35%</span></div>
+        </div>
+        <div class="zone-info">
+            <div class="zone-name">Heung Yuen Wai</div>
+            <div class="zone-stat">Area: <span class="stat-value">75 km²</span></div>
+            <div class="zone-stat">Population: <span class="stat-value">550K</span></div>
+            <div class="zone-stat">Buildings: <span class="stat-value">2,000</span></div>
+            <div class="zone-stat">Green Space: <span class="stat-value">32%</span></div>
+        </div>
+        <div class="zone-info">
+            <div class="zone-name">Fanling/Sheung Shui</div>
+            <div class="zone-stat">Area: <span class="stat-value">85 km²</span></div>
+            <div class="zone-stat">Population: <span class="stat-value">700K</span></div>
+            <div class="zone-stat">Buildings: <span class="stat-value">2,800</span></div>
+            <div class="zone-stat">Green Space: <span class="stat-value">30%</span></div>
+        </div>
+        <div class="zone-info">
+            <div class="zone-name">Kwu Tung North</div>
+            <div class="zone-stat">Area: <span class="stat-value">53 km²</span></div>
+            <div class="zone-stat">Population: <span class="stat-value">600K</span></div>
+            <div class="zone-stat">Buildings: <span class="stat-value">2,200</span></div>
+            <div class="zone-stat">Green Space: <span class="stat-value">28%</span></div>
+        </div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="ui-panel controls-panel">
+        <h3>🎮 Controls</h3>
+        <div class="control-group">
+            <label class="control-label">View Mode</label>
+            <button id="btn-globe" class="active">Globe</button>
+            <button id="btn-zones">Zones</button>
+            <button id="btn-metrics">Metrics</button>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Visualization</label>
+            <button id="btn-boundaries">Boundaries</button>
+            <button id="btn-heatmap">Heatmap</button>
+            <button id="btn-reset">Reset View</button>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Interaction</label>
+            <button id="btn-zoom-nm">Zoom to NM</button>
+            <button id="btn-rotate">Auto Rotate</button>
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="ui-panel legend">
+        <h3>📊 Legend</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #64c8ff;"></div>
+            <span>Northern Metropolis Boundary</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff6b6b;"></div>
+            <span>High Density Zone</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ffd93d;"></div>
+            <span>Medium Density Zone</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #6bcf7f;"></div>
+            <span>Green Space</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4a90e2;"></div>
+            <span>Water Bodies</span>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Globe Script -->
+    <script src="globe.js"></script>
+</body>
+</html>
